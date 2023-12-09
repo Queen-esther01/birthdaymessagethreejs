@@ -3,18 +3,25 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { DragControls } from "three/examples/jsm/controls/DragControls";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
-// import gsap from 'gsap'
+import gsap from 'gsap'
 import GUI from "lil-gui";
 
 const gui = new GUI({
 	title: "Playground",
 });
 
+
 const debugObject = {
 	numberOfCircles: 100,
 	background: "#D9BFEF",
 	cardBackground: "#E6E6FA",
 	textColor: "#663399",
+};
+
+
+const sizes = {
+	width: window.innerWidth,
+	height: window.innerHeight,
 };
 
 const canvas = document.querySelector("canvas.webgl");
@@ -62,9 +69,18 @@ const textureLoader = new THREE.TextureLoader()
 const matcapTexture = textureLoader.load('textures/purplematcap.jpg')
 matcapTexture.colorSpace = THREE.SRGBColorSpace
 
+
+//CAMERA
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
+camera.position.z = 3;
+scene.add(camera);
+
+
+
 //FONTS
 const fontLoader = new FontLoader();
 fontLoader.load("/fonts/Love_Light_Regular.json", (font) => {
+	gsap.fromTo(camera.position, { duration: 2, z: 3 }, { duration: 2, z: 5 });
 	const textGeometry = new TextGeometry(
 		"Happy Birthday \n \u00a0 \u00a0 Kaitonna",
 		{
@@ -72,11 +88,11 @@ fontLoader.load("/fonts/Love_Light_Regular.json", (font) => {
 			size: 0.5,
 			height: 0.1,
 			curveSegments: 20,
-			// bevelEnabled: false,
-			// bevelThickness: 0.01,
-			// bevelSize: 0.01,
-			// bevelOffset: 0,
-			// bevelSegments: 20
+			bevelEnabled: true,
+			bevelThickness: 0.01,
+			bevelSize: 0.01,
+			bevelOffset: 0,
+			bevelSegments: 20
 		}
 		// {
 		// 	font: font,
@@ -95,6 +111,8 @@ fontLoader.load("/fonts/Love_Light_Regular.json", (font) => {
 	// gsap.to(textMesh.position, {duration: 1, y: 0})
 	//gsap.fromTo(textMesh.position, { duration: 2, opacity: 0.5 }, { duration: 2, opacity: 1, ease: 'circ' });
 	scene.add(textMesh);
+}, () => {
+	
 });
 
 // fontLoader.load(
@@ -173,15 +191,9 @@ for (let i = 0; i < debugObject.numberOfCircles; i++) {
 //     debugObject.numberOfCircles = value
 // })
 
-const sizes = {
-	width: window.innerWidth,
-	height: window.innerHeight,
-};
 
-//CAMERA
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
-camera.position.z = 5;
-scene.add(camera);
+
+
 
 //ORBITCONTROLS
 const controls = new OrbitControls(camera, canvas);
