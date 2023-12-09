@@ -72,11 +72,11 @@ fontLoader.load("/fonts/Love_Light_Regular.json", (font) => {
 			size: 0.5,
 			height: 0.1,
 			curveSegments: 20,
-			bevelEnabled: true,
-			bevelThickness: 0.02,
-			bevelSize: 0.01,
-			bevelOffset: 0,
-			bevelSegments: 20
+			// bevelEnabled: false,
+			// bevelThickness: 0.01,
+			// bevelSize: 0.01,
+			// bevelOffset: 0,
+			// bevelSegments: 20
 		}
 		// {
 		// 	font: font,
