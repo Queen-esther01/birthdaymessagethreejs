@@ -80,7 +80,7 @@ scene.add(camera);
 //FONTS
 const fontLoader = new FontLoader();
 fontLoader.load("/fonts/Love_Light_Regular.json", (font) => {
-	gsap.fromTo(camera.position, { duration: 2, z: 3 }, { duration: 2, z: 5 });
+	gsap.fromTo(camera.position, { duration: 3, z: 3 }, { duration: 3, z: 5 });
 	const textGeometry = new TextGeometry(
 		"Happy Birthday \n \u00a0 \u00a0 Kaitonna",
 		{
@@ -143,14 +143,14 @@ fontLoader.load("/fonts/Love_Light_Regular.json", (font) => {
 // )
 
 //CARD GEOMETRY
-const cardGeometry = new THREE.PlaneGeometry(4, 3, 1);
-const cardMaterial = new THREE.MeshBasicMaterial({
-	color: debugObject.cardBackground,
-});
-const cardMesh = new THREE.Mesh(cardGeometry, cardMaterial);
-cardMaterial.side = THREE.DoubleSide;
-//gsap.fromTo(cardMesh.rotation, { duration: 3, y: Math.PI }, { duration: 3, y: 0 });
-scene.add(cardMesh);
+// const cardGeometry = new THREE.PlaneGeometry(4, 3, 1);
+// const cardMaterial = new THREE.MeshBasicMaterial({
+// 	color: debugObject.cardBackground,
+// });
+// const cardMesh = new THREE.Mesh(cardGeometry, cardMaterial);
+// cardMaterial.side = THREE.DoubleSide;
+// //gsap.fromTo(cardMesh.rotation, { duration: 3, y: Math.PI }, { duration: 3, y: 0 });
+// scene.add(cardMesh);
 
 //LIGHTS
 const ambientLight = new THREE.AmbientLight("white", 1);
