@@ -186,11 +186,11 @@ scene.add(camera);
 //ORBITCONTROLS
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-controls.autoRotate = true;
+controls.autoRotate = false;
 controls.autoRotateSpeed = 4.0;
-setTimeout(() => {
-	controls.autoRotate = false;
-}, 15800);
+// setTimeout(() => {
+// 	controls.autoRotate = false;
+// }, Math.PI * 2);
 gui.add(controls, "autoRotate").onChange((value) => {
 	console.log(value);
 	if (!value) {
