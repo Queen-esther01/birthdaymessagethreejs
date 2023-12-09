@@ -57,6 +57,11 @@ window.addEventListener("dblclick", () => {
 	}
 });
 
+
+const textureLoader = new THREE.TextureLoader()
+const matcapTexture = textureLoader.load('textures/purplematcap.jpg')
+matcapTexture.colorSpace = THREE.SRGBColorSpace
+
 //FONTS
 const fontLoader = new FontLoader();
 fontLoader.load("/fonts/Love_Light_Regular.json", (font) => {
@@ -65,14 +70,23 @@ fontLoader.load("/fonts/Love_Light_Regular.json", (font) => {
 		{
 			font: font,
 			size: 0.5,
-			height: 0.001,
-			curveSegments: 3,
+			height: 0.1,
+			curveSegments: 20,
+			bevelEnabled: true,
+			bevelThickness: 0.02,
+			bevelSize: 0.01,
+			bevelOffset: 0,
+			bevelSegments: 20
 		}
+		// {
+		// 	font: font,
+		// 	size: 0.5,
+		// 	height: 0.001,
+		// 	curveSegments: 3,
+		// }
 	);
 	textGeometry.center();
-	const textMaterial = new THREE.MeshBasicMaterial({
-		color: "rebeccapurple",
-	});
+	const textMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture});
 	const textMesh = new THREE.Mesh(textGeometry, textMaterial);
 	gui.addColor(debugObject, "textColor").onChange((value) => {
 		textMaterial.color.set(debugObject.textColor);
@@ -166,7 +180,7 @@ const sizes = {
 
 //CAMERA
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
-camera.position.z = 6;
+camera.position.z = 5;
 scene.add(camera);
 
 //ORBITCONTROLS
