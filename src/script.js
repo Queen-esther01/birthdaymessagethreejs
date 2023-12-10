@@ -227,6 +227,7 @@ dragControls.addEventListener("dragend", function () {
 //RENDERER
 const renderer = new THREE.WebGLRenderer({
 	canvas,
+	antialias: true
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.render(scene, camera);
